@@ -12,20 +12,6 @@ export default function SideBar() {
     const [searchQuery, setSearchQuery] = useState('');
     const [visible, setVisible] = useState(false);
 
-    useEffect(() => {
-        const getConversation = async () => {
-            if (!currentUser?._id) return;
-            try {
-                const res = await fetch(`http://localhost:5000/conversation/${currentUser?._id}`);
-                const data = await res.json();
-                setConversation(data);
-            } catch (err) {
-                console.log("Get Conversation Error: ", err.message);
-            }
-        }
-        getConversation();
-    }, [currentUser]);
-
     const filterUsers = users.filter((user) => {
         return user.name?.toLowerCase().includes(searchQuery.toLocaleLowerCase()) || user.username?.toLocaleLowerCase().includes(searchQuery.toLowerCase())
     })

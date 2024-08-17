@@ -8,7 +8,7 @@ export default function SearchSideProfile({ user, visible, setVisible, setConver
     const handleFunc = async () => {
         try {
             setVisible(!visible)
-            const res = await fetch("http://localhost:5000/conversation", {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND}/conversation`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

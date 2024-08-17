@@ -1,6 +1,8 @@
+require('dotenv').config()
+
 const io = require("socket.io")(8900, {
     cors: {
-      origin: "http://localhost:3000",
+      origin: `${process.env.REACT_APP_FRONTEND_URL}`,
     },
   });
   
@@ -21,8 +23,6 @@ const io = require("socket.io")(8900, {
   
   io.on("connection", (socket) => {
   
-    console.log("User connected with ",socket.id)
-
     //take userId and socketId from user
     socket.on("addUser", (userId) => {
       addUser(userId, socket.id);
@@ -41,7 +41,6 @@ const io = require("socket.io")(8900, {
     //when disconnect
     socket.on("disconnect", () => {
       removeUser(socket.id);
-      console.log("User disconnected : ", socket.id)
       io.emit("getUsers", users);
     });
   });

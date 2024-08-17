@@ -18,7 +18,7 @@ export default function ChatProfile() {
 
     useEffect(() => {
         const fetchConversation = async () => {
-            const res = await fetch(`http://localhost:5000/conversation`, {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND}/conversation`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -48,7 +48,7 @@ export default function ChatProfile() {
     }, [arrivalMessage])
 
     const fetchMessages = async (id) => {
-        const res = await fetch(`http://localhost:5000/message/${id}`)
+        const res = await fetch(`${process.env.REACT_APP_BACKEND}/message/${id}`)
         const data = await res.json();
         console.log("Messages: ", data)
         setMessages(data);
@@ -56,7 +56,7 @@ export default function ChatProfile() {
 
     const getUserDetails = async () => {
         try {
-            const res = await fetch(`http://localhost:5000/api/users/${id}`)
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL_USER}/${id}`)
             const data = await res.json();
             setUserProfile(data);
             console.log(data)
@@ -85,7 +85,7 @@ export default function ChatProfile() {
         })
 
         try {
-            const res = await fetch(`http://localhost:5000/message`, {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND}/message`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -105,8 +105,6 @@ export default function ChatProfile() {
             handleSubmit(e);
         }
     }
-
-    console.log("ID: ", id);
 
     return (
         <>

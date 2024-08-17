@@ -26,7 +26,7 @@ export default function AuthState(props) {
     }, [user])
 
     useEffect(() => {
-        socket.current = io("ws://localhost:8900");
+        socket.current = io(`${process.env.REACT_APP_SOCKET_IO}`);
         socket?.current?.on("getMessage", data => {
             setArrivalMessage({
                 sender: data.senderId,
@@ -45,7 +45,7 @@ export default function AuthState(props) {
 
         socket?.current?.on("getUsers", (users) => {
             setOnlineUsers(users);
-            // console.log("Users: ", users)
+            console.log("Users: ", users)
         });
         // eslint-disable-next-line
     }, [currentUser]);
@@ -102,7 +102,7 @@ export default function AuthState(props) {
 
     const fetchSideBarConversation = async () => {
         try {
-            const res = await fetch(`http://localhost:5000/conversation/${currentUser?._id}`);
+            const res = await fetch(`${process.env.REACT_APP_BACKEND}/conversation/${currentUser?._id}`);
             const data = await res.json();
             setConversation(data);
             fetchUsers(data);
