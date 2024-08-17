@@ -1,8 +1,14 @@
 require('dotenv').config()
+var express = require("express")
+var cors = require("cors");
+var app = express()
+
+app.use(cors())
 
 const io = require("socket.io")(8900, {
     cors: {
       origin: `${process.env.REACT_APP_FRONTEND_URL}`,
+      Credential: true
     },
   });
   
