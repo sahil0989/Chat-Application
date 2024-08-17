@@ -13,12 +13,10 @@ export default function SideProfile({ user, index }) {
         if (onlineUsers?.some(item => item?.userId === user?._id)) {
             setOnline(true);
         }
-        console.log("Online Users: ", onlineUsers);
     }, [onlineUsers, user])
 
     const handleFunc = () => {
         navigate(`/${user?._id}`) 
-        console.log(user.username," - ",user.name," - ", user._id)
     }
 
     return (

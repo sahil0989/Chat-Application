@@ -29,7 +29,6 @@ export default function ChatProfile() {
                 })
             })
             const data = await res.json();
-            console.log("Data: ", data);
             setChatId(data?._id);
             await fetchMessages(data?._id)
             await getUserDetails();
@@ -43,7 +42,7 @@ export default function ChatProfile() {
 
     useEffect(() => {
         arrivalMessage && userProfile?._id === arrivalMessage.sender && setMessages((prev) => [...prev, arrivalMessage])
-        console.log("Arrival Message: ", arrivalMessage)
+        // console.log("Arrival Message: ", arrivalMessage)
         // eslint-disable-next-line
     }, [arrivalMessage])
 

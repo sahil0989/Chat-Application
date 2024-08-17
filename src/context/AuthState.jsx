@@ -45,7 +45,6 @@ export default function AuthState(props) {
 
         socket?.current?.on("getUsers", (users) => {
             setOnlineUsers(users);
-            console.log("Users: ", users)
         });
         // eslint-disable-next-line
     }, [currentUser]);
@@ -94,7 +93,6 @@ export default function AuthState(props) {
             });
 
             await Promise.all(fetchPromises);
-            console.log("Profile User: ", users)
         } catch (err) {
             console.log("User Profile Fetch Error: ", err.message);
         }
@@ -106,8 +104,6 @@ export default function AuthState(props) {
             const data = await res.json();
             setConversation(data);
             fetchUsers(data);
-            console.log("Current User: ", currentUser?._id);
-            console.log("Conversation: ", data);
         } catch (err) {
             console.log("Side Conversation Error: ", err.message);
         }
