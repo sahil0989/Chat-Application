@@ -114,8 +114,8 @@ export default function ChatProfile() {
                         <img src={userProfile?.profilePic} className='w-10 h-10 rounded-full object-cover' alt='profile' />
                     </div>
                     <div>
-                        <h2 className='font-semibold'>{userProfile?.name} <span className='text-white/40 text-sm'>(@{userProfile?.username})</span></h2>
-                        <p className='text-white/50 mt-1 text-sm'>Online</p>
+                        <h2 className='font-semibold'>{userProfile?.name} <span className='text-white/40 text-sm'></span></h2>
+                        <p className='text-white/50 mt-1 text-sm'>(@{userProfile?.username})</p>
                     </div>
                 </div>
                 <div className='flex flex-col justify-between w-full h-[calc(100vh-100px)] md:h-[calc(100vh-175px)]'>

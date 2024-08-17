@@ -30,7 +30,7 @@ export default function SideProfile({ user, index }) {
             </div>
             <div>
                 <h2 className='font-semibold'>{user.name}</h2>
-                <p className='text-white/50 mt-1 text-sm'>Hye! Are you there ? {index}</p>
+                <p className='text-white/50 mt-1 text-sm'>{user.username}</p>
             </div>
         </div>
     )

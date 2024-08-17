@@ -4,6 +4,10 @@ const createConversation = async (req, res) => {
     try {
         const { senderId, receiverId } = req.body;
 
+        if(!senderId || !receiverId) {
+            return res.status(400).json({message: "Credentials missing!!"});
+        }
+
         const existingConversation = await Conversation.findOne({
             members: { $all: [senderId, receiverId] }
         });
