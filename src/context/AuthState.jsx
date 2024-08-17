@@ -52,7 +52,8 @@ export default function AuthState(props) {
     const fetchAllUsers = async () => {
         try {
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL_USER}/data/xyz`);
-            const data = await response.json();
+            let data = await response.json();
+            data = data.filter((user) => user._id !== currentUser?._id)
             setAllUsers(data);
         } catch (err) {
             console.log("Alluser Error: ", err.message);
