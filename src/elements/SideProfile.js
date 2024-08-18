@@ -1,19 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import AuthContext from '../context/AuthContext';
 
-export default function SideProfile({ user, index }) {
+export default function SideProfile({ user, online }) {
 
     const navigate = useNavigate();
-
-    const { onlineUsers } = useContext(AuthContext);
-    const [online, setOnline] = useState(false)
-
-    useEffect(() => {
-        if (onlineUsers?.some(item => item?.userId === user?._id)) {
-            setOnline(true);
-        }
-    }, [onlineUsers, user])
 
     const handleFunc = () => {
         navigate(`/${user?._id}`) 
@@ -30,7 +20,7 @@ export default function SideProfile({ user, index }) {
             </div>
             <div>
                 <h2 className='font-semibold'>{user.name}</h2>
-                <p className='text-white/50 mt-1 text-sm'>{user.username}</p>
+                <p className='text-white/50 mt-1 text-sm'>@{user.username}</p>
             </div>
         </div>
     )

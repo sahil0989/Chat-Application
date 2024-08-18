@@ -45,6 +45,7 @@ export default function AuthState(props) {
 
         socket?.current?.on("getUsers", (users) => {
             setOnlineUsers(users);
+            // console.log("Online User: ", users)
         });
         // eslint-disable-next-line
     }, [currentUser]);

@@ -7,7 +7,7 @@ import { TiUserAdd } from "react-icons/ti";
 import SearchSideProfile from './SearchSideProfile';
 
 export default function SideBar() {
-    const { currentUser, allUsers, onlineUsers, socket, users } = useContext(AuthContext);
+    const { currentUser, allUsers, socket, users, onlineUsers } = useContext(AuthContext);
     const [conversation, setConversation] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [visible, setVisible] = useState(false);
@@ -29,6 +29,16 @@ export default function SideBar() {
     const filterUsers = users.filter((user) => {
         return user.name?.toLowerCase().includes(searchQuery.toLocaleLowerCase()) || user.username?.toLocaleLowerCase().includes(searchQuery.toLowerCase())
     })
+
+    const checkOnline = (id) => {
+
+        let online = onlineUsers.find((user) => user.userId === id)
+        if (online) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     return (
         <>
@@ -54,13 +64,13 @@ export default function SideBar() {
                             <p className='text-center text-white/40'>No conversations found</p>
                         ) : (
                             filterUsers.map((user, index) => (
-                                <SideProfile key={index} user={user} index={index} conversation={conversation} currentUser={currentUser} onlineUsers={onlineUsers} socket={socket}
+                                <SideProfile key={index} user={user} index={index} conversation={conversation} currentUser={currentUser} socket={socket} online={checkOnline(user._id)}
                                 />
                             ))
                         )
                     }
                 </div>
-                <div onClick={() => setVisible(!visible)} className='absolute bottom-4 left-4 md:bottom-24 bg-[#353535] p-2 rounded-lg cursor-pointer'>
+                <div onClick={() => setVisible(!visible)} className='absolute bottom-4 left-4 bg-[#353535] p-2 rounded-lg cursor-pointer'>
                     <TiUserAdd size={30} />
                 </div>
             </div>
